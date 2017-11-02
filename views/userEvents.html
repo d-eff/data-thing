@@ -2,7 +2,7 @@
 <html>
   <head>
     <link rel='stylesheet', href='css/bootstrap.min.css'>
-    <link rel='stylesheet' href='styles/style.css'>
+    <link rel='stylesheet' href='style.css'>
     <title>SHO BI VISUALIZER THING MAGICAL HAPPY PRINCESS</title>
   </head>
   <body>
@@ -19,14 +19,14 @@
           </tr>
         </thead>
         <tbody>
-          ${ events.map(val => `
-          <tr>
+          ${ events.map(val => 
+          `<tr>
               <td>${val.userId}</td>
               <td>${val.event_date}</td>
               <td>${val.src}</td>
               <td>${val.event}</td>
             </tr>`
-          )}
+          ).join('')}
         </tbody>
       </table>
 
@@ -50,7 +50,7 @@
               <td>${val.billing}</td>
               <td>${val.platform}</td>
             </tr>`
-          )} 
+          ).join('')} 
         </tbody>
       </table>
 
@@ -74,7 +74,7 @@
               <td>${val.billing}</td>
               <td>${val.platform}</td>
             </tr>`
-          )}
+          ).join('')}
         </tbody>
       </table>
     </div>
