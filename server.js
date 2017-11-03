@@ -13,24 +13,21 @@ app.set('views', 'views');
 app.set('view engine', 'html');
 
 app.get('/', (req, res) => {
-  // res.render('list', {locals: {data: JSON.parse(datas)}});
-  res.status(404);
+  res.render('list', {locals: {data: datas}});
 });
 
 app.get('/:id', (req, res) => {
-  res.render('userEvents', {locals: JSON.parse(datas[req.params.id])});
+  res.render('userEvents', {locals: datas[req.params.id]});
 });
 
 fs.readFile('data/userEventsActivity.json', (err, data) => {
   if (err) {
     return console.error(err);
   }
-  datas = data.toString().split('\n');
 
-  console.log(datas.length)
-  // datas = data.toString().split('\n').map(val => {
-  //   console.log(val);
-  //   JSON.parse(val);
-  // });
+  datas = data.toString().trim().split('\n').map(val => {
+    return JSON.parse(val);
+  });
+
   app.listen(3000, () => {});
 });
