@@ -1,16 +1,6 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
-      <link rel='stylesheet', href='/css/bootstrap.min.css'>
-      <link rel='stylesheet' href='/style.css'>
-      <title>SHO BI VISUALIZER THING MAGICAL HAPPY PRINCESS</title>
-    </head>
-    <body>
-      <ul>
-        ${
-          data.map((val, index) =>
-            `<li><a href="/${filename}/${index}">${val.userId}</a></li>`
-        ).join('')}
-      </ul>
-    </body>
-</html>
+<ul>
+  ${
+    data.map((val, index) =>
+      `<li><a href="/${filename}/${index}">${val.userId}</a></li>`
+  ).join('')}
+</ul>

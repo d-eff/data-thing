@@ -13,15 +13,30 @@ app.set('views', 'views');
 app.set('view engine', 'html');
 
 app.get('/', (req, res) => {
-  res.render('fileList', {locals: {data: Object.keys(datas)}});
+  res.render('index', 
+            {
+              locals: {data: Object.keys(datas)},
+              partials: {main: 'fileList'}
+            }
+  );
 });
 
 app.get('/:filename', (req, res) => {
-  res.render('list', {locals: {data: datas[req.params.filename], filename: req.params.filename}});
+  res.render('index', 
+            {
+              locals: {data: datas[req.params.filename], filename: req.params.filename},
+              partials: {main: 'list'}
+            }
+  );
 });
 
 app.get('/:filename/:id', (req, res) => {
-  res.render('userEvents', {locals: datas[req.params.filename][req.params.id]});
+  res.render('index', 
+            {
+              locals: datas[req.params.filename][req.params.id],
+              partials: {main: 'userEvents'}
+            }
+  );
 });
 
 fs.readdir('data', (err, files) => {
