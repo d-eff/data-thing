@@ -10,7 +10,7 @@ routes.get('/', (req, res) => {
   );
 });
 
-routes.get('/:filename', (req, res) => {
+routes.get('/file/:filename', (req, res) => {
   res.render('index', 
             {
               locals: {data: file.data[req.params.filename], filename: req.params.filename},
@@ -19,7 +19,7 @@ routes.get('/:filename', (req, res) => {
   );
 });
 
-routes.get('/:filename/:id', (req, res) => {
+routes.get('/file/:filename/:id', (req, res) => {
   res.render('index', 
             {
               locals: file.data[req.params.filename][req.params.id],
