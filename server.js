@@ -15,6 +15,7 @@ app.use('/', routes);
 
 const startServer = () => {
   app.listen(3000, () => {});
+  fileLoader.watch();
 }
 
 fileLoader.loadFiles(startServer);

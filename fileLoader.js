@@ -3,13 +3,14 @@ const fs = require('fs');
 let datas = {};
 
 const watch = (reloadSameFiles = false) => {
-  fs.watch('data', (event, filename) => {
-    if(event === 'change') {
-      let shortname = filename.replace('.json', '');
-      if(reloadSameFiles || !datas.hasOwnProperty(shortname)) {
-        loadFile(filename);
-      }
-    } 
+  
+  fs.watch('data/', (event, filename) => {
+    console.log(event);
+    let shortname = filename.replace('.json', '');
+    console.log("change to " + shortname);
+    if(!datas.hasOwnProperty(shortname) || reloadSameFiles) {
+      loadFile(filename);
+    }
   });
 }
 
@@ -31,6 +32,7 @@ const loadFiles = (cb = () => {}) => {
 const loadFile = (filename) => {
   let fullPath = 'data/' + filename
   let shortname = filename.replace('.json', '');
+  console.log("processing " + shortname);
   fs.readFile(fullPath, (err, data) => {
     if (err) {
       console.error("error reading file" + filename + " " + err);
