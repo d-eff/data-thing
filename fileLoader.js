@@ -5,7 +5,7 @@ let datas = {};
 const loadFiles = (cb) => {
   fs.readdir('data', (err, files) => {
     if (err) {
-      return console.error(err);
+      return console.error("error reading /data" + err);
     }
     
     //run through them, load each one up
@@ -14,12 +14,18 @@ const loadFiles = (cb) => {
       let shortname = filename.replace('.json', '');
       fs.readFile(fullPath, (err, data) => {
         if (err) {
-          console.error(err);
+          console.error("error reading file" + filename + " " + err);
         }
-  
+
         //the files come through as newline-delimited JSON, have to be split and parsed
         datas[shortname] = data.toString().trim().split('\n').map(val => {
-          return JSON.parse(val);
+          var item = {};
+          try {
+            item = JSON.parse(val);
+          } catch(e) {
+            console.log("problem parsing data at " + fullPath);
+          }
+          return item;
         });
       });
     });
