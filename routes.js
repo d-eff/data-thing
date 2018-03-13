@@ -4,13 +4,13 @@ const file = require('./fileLoader');
 routes.get('/', (req, res) => {
   res.render('index', 
             {
-              locals: {data: Object.keys(file.data)},
+              locals: {data: Object.keys(file.data), fileData: file.data},
               partials: {main: 'fileList'}
             }
   );
 });
 
-routes.get('/file/:filename', (req, res) => {
+routes.get('/:filename', (req, res) => {
   res.render('index', 
             {
               locals: {data: file.data[req.params.filename], filename: req.params.filename},
@@ -19,7 +19,7 @@ routes.get('/file/:filename', (req, res) => {
   );
 });
 
-routes.get('/file/:filename/:id', (req, res) => {
+routes.get('/:filename/:id', (req, res) => {
   res.render('index', 
             {
               locals: file.data[req.params.filename][req.params.id],

@@ -14,7 +14,7 @@ app.set('view engine', 'html');
 app.use('/', routes);
 
 const startServer = () => {
-  app.listen(3000, () => {});
+  app.listen(3000,  "129.228.131.157",() => {});
 }
 
 fileLoader.loadFiles(startServer);
