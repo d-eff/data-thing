@@ -5,6 +5,11 @@ routes.get('/', (req, res) => {
   res.render('fileList',
             {
               data: file.flat,
+                helpers: {
+                    sanitize: function(string) {
+                        return string.replace('.json', '');
+                    }
+                }
             }
   );
 });
@@ -13,7 +18,7 @@ routes.get('/:filename', (req, res) => {
   res.render('list',
             {
               data: file.data[req.params.filename],
-                filename: req.params.filename
+                filename: req.params.filename,
             }
   );
 });
@@ -25,6 +30,13 @@ routes.get('/:filename/:id', (req, res) => {
               partials: {main: 'userEvents'}
             }
   );
+});
+
+routes.get('/schemas/:folder/:filename', async (req, res) => {
+    await file.loadFile(req.params.folder, req.params.filename, (newFile) => {
+        res.send(newFile);
+        
+    });
 });
 
 module.exports = routes;

@@ -3,7 +3,7 @@ const fs = require('fs');
 let datas = {};
 let flat = [];
 
-const loadFiles = (cb) => {
+const populateIndex = (cb) => {
   fs.readdir('data', (err, folders) => {
     if (err) {
       return console.error(err);
@@ -19,28 +19,32 @@ const loadFiles = (cb) => {
 
           datas[folder] = files;
           flat.push({"folder": folder, "files": files});
-          // let fullPath = 'data/' + folder + '/' + ;
-          // let shortname = filename.replace('.json', '');
-          // fs.readFile(fullPath, (err, data) => {
-          //   if (err) {
-          //     console.error(err);
-          //   }
-          //
-          //   //the files come through as newline-delimited JSON, have to be split and parsed
-          //   datas[shortname] = data.toString().trim().split('\n').map(val => {
-          //     return JSON.parse(val);
-          //   });
-          // });
       });
     });
-
     cb();
   });
 };
 
+const loadFile = async (folder, filename, cb) => {
+    let fullPath = 'data/' + folder + '/' + filename + '.json';
+
+    fs.readFile(fullPath, (err, data) => {
+      if (err) {
+        cb(err);
+      }
+
+      //the files come through as newline-delimited JSON, have to be split and parsed
+      data.toString().trim().split('\n').map(val => {
+        cb(JSON.parse(val));
+      });
+    });
+}
+
+
 
 module.exports = {
-  loadFiles: loadFiles,
+  loadFile: loadFile,
+  populate: populateIndex,
   data: datas,
   flat: flat
 };

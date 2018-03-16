@@ -4,7 +4,7 @@
     {{#each data}}
         <h3>{{this.folder}}</h3>
         {{#each this.files}}
-            <li><a href="">{{this}}</a></li>
+            <li><a href="/schemas/{{../this.folder}}/{{sanitize this}}">{{this}}</a></li>
         {{/each}}
     {{/each}}
   </ul>

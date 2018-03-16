@@ -13,7 +13,7 @@ app.set('view engine', '.hbs');
 app.use('/', routes);
 
 const startServer = () => {
-  app.listen(3000, () => {});
+    app.listen(3000, () => {});
 }
 
-fileLoader.loadFiles(startServer);
+fileLoader.populate(startServer);
