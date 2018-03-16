@@ -1,0 +1,13 @@
+<div>
+  <h1>Available Files</h1>
+  <ul>
+    {{#each data}}
+        <h3>{{this.folder}}</h3>
+        {{#each this.files}}
+            <li><a href="">{{this}}</a></li>
+        {{/each}}
+    {{/each}}
+  </ul>
+</div>
+
+

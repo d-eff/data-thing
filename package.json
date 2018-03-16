@@ -10,6 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.2",
-    "express-es6-template-engine": "^2.0.2"
+    "express-handlebars": "^3.0.0"
   }
 }

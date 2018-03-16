@@ -2,19 +2,18 @@ const routes = require('express').Router();
 const file = require('./fileLoader');
 
 routes.get('/', (req, res) => {
-  res.render('index', 
+  res.render('fileList',
             {
-              locals: {data: Object.keys(file.data), fileData: file.data},
-              partials: {main: 'fileList'}
+              data: file.flat,
             }
   );
 });
 
 routes.get('/:filename', (req, res) => {
-  res.render('index', 
+  res.render('list',
             {
-              locals: {data: file.data[req.params.filename], filename: req.params.filename},
-              partials: {main: 'list'}
+              data: file.data[req.params.filename],
+                filename: req.params.filename
             }
   );
 });
