@@ -1,5 +1,5 @@
 <div class='col-md-9 container'>
-  <h3>User ${userId}</h3>
+  <h3>User {{data.userId}}</h3>
   <h4>Events: (Occur in only one source)</h4>
   <table class='table table-striped table-hover'>
     <thead>
@@ -11,14 +11,14 @@
       </tr>
     </thead>
     <tbody>
-      ${ events.map(val => 
-      `<tr>
-          <td>${val.eventDate}</td>
-          <td>${val.eventType}</td>
-          <td>${val.src}</td>
-          <td>${val.record}</td>
-        </tr>`
-      ).join('')}
+      {{#each data.events}}
+      <tr>
+          <td>{{this.eventDate}}</td>
+          <td>{{this.eventType}}</td>
+          <td>{{this.src}}</td>
+          <td>{{this.record}}</td>
+        </tr>
+      {{/each}}
     </tbody>
   </table>
 
@@ -34,15 +34,15 @@
       </tr>
     </thead>
     <tbody>
-      ${ qaAct.map(val =>
-        `<tr>
-          <td>${val.dt}</td>
-          <td>${val.activity}</td>
-          <td>${val.billing}</td>
-          <td>${val.platform}</td>
-          <td>${val.payload}</td>
-      </tr>`
-      ).join('')}
+    {{#each data.qaAct}}
+        <tr>
+          <td>{{this.dt}}</td>
+          <td>{{this.activity}}</td>
+          <td>{{this.billing}}</td>
+          <td>{{this.platform}}</td>
+          <td>{{this.payload}}</td>
+      </tr>
+      {{/each}}
     </tbody>
   </table>
 
@@ -58,15 +58,15 @@
       </tr>
     </thead>
     <tbody>
-      ${prodAct.map(val =>
-        `<tr>
-          <td>${val.dt}</td>
-          <td>${val.activity}</td>
-          <td>${val.billing}</td>
-          <td>${val.platform}</td>
-          <td>${val.payload}</td>
-      </tr>`
-      ).join('')}
+    {{#each data.prodAct}}
+        <tr>
+          <td>{{this.dt}}</td>
+          <td>{{this.activity}}</td>
+          <td>{{this.billing}}</td>
+          <td>{{this.platform}}</td>
+          <td>{{this.payload}}</td>
+      </tr>
+      {{/each}}
     </tbody>
   </table>
 </div>

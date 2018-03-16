@@ -14,28 +14,20 @@ routes.get('/', (req, res) => {
   );
 });
 
-routes.get('/:filename', (req, res) => {
-  res.render('list',
+routes.get('/schemas/:folder/:filename/:id', (req, res) => {
+    await file.loadFile(req.params.folder, req.params.filename, (newFile) => {
+        res.render('list', { data: newFile });
+    });
+  res.render('userEvents',
             {
-              data: file.data[req.params.filename],
-                filename: req.params.filename,
-            }
-  );
-});
-
-routes.get('/:filename/:id', (req, res) => {
-  res.render('index', 
-            {
-              locals: file.data[req.params.filename][req.params.id],
-              partials: {main: 'userEvents'}
+              data: file.data[req.params.filename][req.params.id]
             }
   );
 });
 
 routes.get('/schemas/:folder/:filename', async (req, res) => {
     await file.loadFile(req.params.folder, req.params.filename, (newFile) => {
-        res.send(newFile);
-        
+        res.render('list', { data: newFile });
     });
 });
 

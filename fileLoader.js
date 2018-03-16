@@ -34,9 +34,11 @@ const loadFile = async (folder, filename, cb) => {
       }
 
       //the files come through as newline-delimited JSON, have to be split and parsed
-      data.toString().trim().split('\n').map(val => {
-        cb(JSON.parse(val));
-      });
+      // let json = ;
+      //   console.log(json);
+      cb(data.toString().trim().split('\n').map(val => {
+          return JSON.parse(val);
+      }));
     });
 }
 
